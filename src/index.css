@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+
+
+body{
+    background-color: #fafafa;
+}
+
+input[type='radio']:checked::after {
+    content: '✓';
+    color: white;
+    position: absolute;
+    top: -1px;
+    left: 2px;
+    font-size: 14px;
+    font-weight: bold;
+}
