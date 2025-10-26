@@ -11,7 +11,7 @@ const Navbar : React.FC = () => {
                 <div className="w-full max-w-[1440px] px-[1rem] py-[1rem]">
                     {/* navbar logo container */}
                     <div className="cursor-pointer select-none">
-                        <h1 className="text-[1.5rem] font-semibold text-gray-800">B2PTeachers</h1>
+                        <h1 className="text-[1.5rem] font-semibold bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent">B2PTeachers</h1>
                     </div>
                 </div>
             </div>
