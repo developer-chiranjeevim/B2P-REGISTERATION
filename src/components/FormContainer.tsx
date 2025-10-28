@@ -57,9 +57,9 @@ const FormContainer: React.FC = () => {
     const add_dynamodb_record = async(values: FormValuesIF, resume_path: string, degree_path: string, identity_path: string) => {
         
         try{
-            
+            // /http://localhost:8080/apis/application/submit_application
 
-            const request = await axios.post("http://localhost:8080/apis/application/submit_application", {
+            const request = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/submit_application`, {
                 applicationReference: applicationReference,
                 fullName: values.firstname,
                 qualification: values.qualification,
@@ -96,8 +96,9 @@ const FormContainer: React.FC = () => {
 
     const fetch_presigned_url = async(application_reference: string, file_name: string, file_type: string) => {
         try{
+            //http://localhost:8080/apis/application/generate_presigned_url
 
-            const request = await axios.post("http://localhost:8080/apis/application/generate_presigned_url", {
+            const request = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/generate_presigned_url`, {
 
                 application_reference: application_reference,
                 file_name: file_name,
@@ -173,7 +174,9 @@ const FormContainer: React.FC = () => {
     useEffect(() => {
         const fetch_application_number = async() => {
             try{
-                const request = await axios.get("http://localhost:8080/apis/application/fetch_application_number");
+
+                //http://localhost:8080/apis/application/fetch_application_number
+                const request = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/fetch_application_number`);
                 const application_reference = await request.data.application_reference;
                 setApplicationReference(application_reference);
 
