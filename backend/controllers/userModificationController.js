@@ -1,0 +1,39 @@
+import {DynamoDBClient} from "@aws-sdk/client-dynamodb";
+import { DynamoDBDocumentClient, UpdateCommand } from "@aws-sdk/lib-dynamodb";
+
+const client = new DynamoDBClient({ region: process.env.AWS_REGION });
+const docClient = DynamoDBDocumentClient.from(client);
+
+const userModificationController = async(request, response) => {
+    const applicationID = request.body.application_id;
+
+    // Add return statement to prevent further execution
+    if(request.token.id.role !== 'admin'){
+        return response.status(401).json({message: "Not Authorized"});
+    }
+
+    const params = {
+        TableName: process.env.DYNAMO_TABLE_NAME,
+        Key: {
+            application_reference: applicationID
+        },
+        UpdateExpression: `SET #attr = :value`,
+        ExpressionAttributeNames: {
+            "#attr": "isVerified"  // Fixed: Added quotes
+        },
+        ExpressionAttributeValues: {
+            ":value": true
+        },
+        ReturnValues: "ALL_NEW" 
+    };
+
+    try{
+        const data = await docClient.send(new UpdateCommand(params));
+        // Fixed: UpdateCommand returns Attributes, not Items
+        response.json({message: "User verified", data: data.Attributes});
+    }catch(error){
+        response.status(500).json({message: error.message});
+    }
+};
+
+export {userModificationController};

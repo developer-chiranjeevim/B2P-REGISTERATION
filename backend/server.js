@@ -1,6 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
 import formRoute from "./routes/formRoute.js";
+import getAllUsersRouter from "./routes/getAllUsersRoute.js";
+import userModificationRouter from "./routes/UserModificationRoute.js";
 import cors from "cors";
 import { db, update_application_number } from "./db/db.js";
 import { DynamoDBClient} from "@aws-sdk/client-dynamodb";
@@ -44,6 +46,8 @@ app.use(express.json());
 app.use(cors());
 
 app.use('/apis/application', formRoute);
+app.use('/apis/users', getAllUsersRouter);
+app.use('/apis/modify', userModificationRouter);
 
 app.listen(PORT, (error) => {
     if(error){
