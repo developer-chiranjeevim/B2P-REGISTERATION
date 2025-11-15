@@ -2,7 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import formRoute from "./routes/formRoute.js";
 import getAllUsersRouter from "./routes/getAllUsersRoute.js";
-import userModificationRouter from "./routes/UserModificationRoute.js";
+import userModificationRouter from "./routes/userModificationRoute.js";
 import homeRouter from "./routes/homeRoute.js";
 import cors from "cors";
 import { db, update_application_number } from "./db/db.js";
