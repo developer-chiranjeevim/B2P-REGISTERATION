@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import formRoute from "./routes/formRoute.js";
 import getAllUsersRouter from "./routes/getAllUsersRoute.js";
 import userModificationRouter from "./routes/UserModificationRoute.js";
+import homeRouter from "./routes/homeRoute.js";
 import cors from "cors";
 import { db, update_application_number } from "./db/db.js";
 import { DynamoDBClient} from "@aws-sdk/client-dynamodb";
@@ -45,6 +46,7 @@ fetch_application_number();
 app.use(express.json());
 app.use(cors());
 
+app.use("/apis", homeRouter);
 app.use('/apis/application', formRoute);
 app.use('/apis/users', getAllUsersRouter);
 app.use('/apis/modify', userModificationRouter);
