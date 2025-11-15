@@ -9,8 +9,8 @@ interface FormValuesIF {
   firstname: string;
   qualification: string,
   major: string,
-  experienceYears: number;
-  experienceMonths: number;
+  experienceYears: string;
+  experienceMonths: string;
   email: string;
   contactNumber: string;
   whatsAppNumber: string;
@@ -22,12 +22,13 @@ interface FormValuesIF {
   identity: File | null;
   degree: File | null;
 }
+
 const initialValues: FormValuesIF = {
     firstname: "",
     qualification: "",
     major: "",
-    experienceYears: 0,
-    experienceMonths: 0,
+    experienceYears: "0",
+    experienceMonths: "0",
     email: "",
     contactNumber: "",
     whatsAppNumber: "",
